@@ -1,7 +1,6 @@
 /++
  + Asciitable to nicely format tables of strings.
  +
- + Authors: , fatal: your current branch 'master' does not have any commits yet
  + Copyright: Copyright © 2018, Christian Köstlin
  + License: MIT
  +/

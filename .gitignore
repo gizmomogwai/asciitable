@@ -2,13 +2,10 @@
 docs.json
 __dummy.html
 docs/
-asciitable.so
-asciitable.dylib
-asciitable.dll
-asciitable.a
-asciitable.lib
-asciitable-test-*
 *.exe
 *.o
 *.obj
 *.lst
+libasciitable*
+out
+/asciitable-test-library
