@@ -9,6 +9,10 @@ sourcePaths "source" "out/generated/packageversion"
 importPaths "source" "out/generated/packageversion"
 preGenerateCommands "dub run packageversion -- --packageName=asciitable"
 
+configuration "library" {
+  targetType "library"
+}
+
 configuration "ut" {
   targetType "executable"
   targetName "ut"
