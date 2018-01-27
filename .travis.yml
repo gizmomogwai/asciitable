@@ -1,0 +1,29 @@
+﻿%YAML 1.1
+---
+language: d
+d:
+- dmd
+- ldc
+sudo: false
+addons:
+  apt:
+    packages:
+    - libevent-dev
+before_install: [pip install --user codecov, dub fetch packageversion]
+script:
+- dub test --compiler=${DC} --coverage
+- dub build --build=release
+- dub build --build=ddox
+after_success: codecov
+deploy:
+  provider: pages
+  skip-cleanup: true
+  local-dir: "docs"
+  github-token: "$GH_REPO_TOKEN"
+  verbose: true
+  keep-history: true
+  true:
+    branch: master
+env:
+  global:
+    secure: create this token with travis encrypt GH_REPO_TOKEN=key from https://github.com/settings/tokens
