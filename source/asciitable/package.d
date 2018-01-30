@@ -1,6 +1,7 @@
 /++
  + Asciitable to nicely format tables of strings.
  +
+ + Authors: Christian Koestlin
  + Copyright: Copyright © 2018, Christian Köstlin
  + License: MIT
  +/
