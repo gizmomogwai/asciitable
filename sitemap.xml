@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url><loc>http://127.0.0.1/index.html</loc></url>
+<url><loc>http://127.0.0.1/asciitable/packageversion.html</loc></url>
+<url><loc>http://127.0.0.1/asciitable/packageversion/PACKAGE_VERSION.html</loc></url>
+<url><loc>http://127.0.0.1/asciitable.html</loc></url>
+<url><loc>http://127.0.0.1/asciitable/AsciiTable.html</loc></url>
+<url><loc>http://127.0.0.1/asciitable/AsciiTable.add.html</loc></url>
+<url><loc>http://127.0.0.1/asciitable/AsciiTable.minimumWidths.html</loc></url>
+<url><loc>http://127.0.0.1/asciitable/AsciiTable.rows.html</loc></url>
+<url><loc>http://127.0.0.1/asciitable/AsciiTable.this.html</loc></url>
+<url><loc>http://127.0.0.1/asciitable/AsciiTable.toString.html</loc></url>
+<url><loc>http://127.0.0.1/asciitable/Row.html</loc></url>
+<url><loc>http://127.0.0.1/asciitable/Row.columns.html</loc></url>
+<url><loc>http://127.0.0.1/asciitable/Row.this.html</loc></url>
+</urlset>
