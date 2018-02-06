@@ -4,6 +4,9 @@ authors "Christian Köstlin"
 copyright "Copyright © 2018, Christian Köstlin"
 license "MIT"
 
+dependency "packageversion" version="~>0.0.12"
+subConfiguration "packageversion" "library"
+
 x:ddoxFilterArgs "--min-protection=Private"
 sourcePaths "source" "out/generated/packageversion"
 importPaths "source" "out/generated/packageversion"
@@ -11,6 +14,7 @@ preGenerateCommands "dub run packageversion -- --packageName=asciitable"
 
 configuration "library" {
   targetType "library"
+  targetPath "out/lib"
 }
 
 configuration "ut" {
@@ -19,7 +23,7 @@ configuration "ut" {
   targetPath "out/test"
 
   versions "unitThreadedLight"
-  dependency "unit-threaded" version="~>0.7.36"
+  dependency "unit-threaded" version="~>0.7.38"
 }
 
 configuration "unittest" {
@@ -27,7 +31,7 @@ configuration "unittest" {
   targetName "unittest"
   targetPath "out/test"
 
-  dependency "unit-threaded" version="~>0.7.36"
+  dependency "unit-threaded" version="~>0.7.38"
   preBuildCommands "dub run unit-threaded -c gen_ut_main -- -f out/generated/unit-threaded/testsuite.d"
   mainSourceFile "out/generated/unit-threaded/testsuite.d"
 }
