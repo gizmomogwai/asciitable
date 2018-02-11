@@ -8,6 +8,8 @@
 
 module asciitable;
 
+public import asciitable.packageversion;
+
 import std.string;
 
 struct Row

@@ -4,13 +4,15 @@ authors "Christian Köstlin"
 copyright "Copyright © 2018, Christian Köstlin"
 license "MIT"
 
-dependency "packageversion" version="~>0.0.12"
+x:ddoxFilterArgs "--min-protection=Private"
+
+dependency "packageversion" version="~>0.0.15"
 subConfiguration "packageversion" "library"
 
-x:ddoxFilterArgs "--min-protection=Private"
+preBuildCommands "dub run packageversion -- --packageName=asciitable"
+sourceFiles "out/generated/packageversion/asciitable/packageversion.d"
 sourcePaths "source" "out/generated/packageversion"
 importPaths "source" "out/generated/packageversion"
-preGenerateCommands "dub run packageversion -- --packageName=asciitable"
 
 configuration "library" {
   targetType "library"
