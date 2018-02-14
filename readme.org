@@ -1,4 +1,8 @@
-* Asciitable for dlang [[https://github.com/gizmomogwai/asciitable][https://img.shields.io/github/tag/gizmomogwai/asciitable.svg?style=flat-square]] [[https://travis-ci.org/gizmomogwai/asciitable][https://img.shields.io/travis/gizmomogwai/asciitable/master.svg?style=flat-square]] [[https://codecov.io/gh/gizmomogwai/asciitable][https://img.shields.io/codecov/c/github/gizmomogwai/asciitable/master.svg?style=flat-square]] [[https://gizmomogwai.github.io/asciitable][https://img.shields.io/readthedocs/pip.svg?style=flat-square]]
+* Asciitable for dlang
+[[https://github.com/gizmomogwai/asciitable][https://img.shields.io/github/tag/gizmomogwai/asciitable.svg?style=flat-square]] [[https://travis-ci.org/gizmomogwai/asciitable][https://img.shields.io/travis/gizmomogwai/asciitable/master.svg?style=flat-square]] [[https://codecov.io/gh/gizmomogwai/asciitable][https://img.shields.io/codecov/c/github/gizmomogwai/asciitable/master.svg?style=flat-square]] [[https://gizmomogwai.github.io/asciitable][https://img.shields.io/readthedocs/pip.svg?style=flat-square]]
 
 ** Usage
 Please see the [[https://gizmomogwai.github.io/asciitable/asciitable/AsciiTable.html][online docs]] for an example.
+
+** Todos
+*** Implement multiline cells
