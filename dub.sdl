@@ -9,7 +9,7 @@ x:ddoxFilterArgs "--min-protection=Private"
 dependency "packageversion" version="~>0.0.15"
 subConfiguration "packageversion" "library"
 
-preBuildCommands "dub run packageversion -- --packageName=asciitable"
+preBuildCommands "packageversion --packageName=asciitable || dub run packageversion -- --packageName=asciitable"
 sourceFiles "out/generated/packageversion/asciitable/packageversion.d"
 sourcePaths "source" "out/generated/packageversion"
 importPaths "source" "out/generated/packageversion"
