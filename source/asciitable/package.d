@@ -26,7 +26,7 @@ struct Row
  +/
 struct AsciiTable
 {
-    ulong[] minimumWidths;
+    size_t[] minimumWidths;
     Row[] rows;
 
     this(W...)(W minimumWidths)
@@ -68,7 +68,7 @@ struct AsciiTable
             res ~= linePrefix ~ separator;
             foreach (idx, column; row.columns)
             {
-                res ~= leftJustify(column, minimumWidths[idx], ' ') ~ separator;
+                res ~= column.leftJustify(minimumWidths[idx], ' ') ~ separator;
             }
         }
         return res;

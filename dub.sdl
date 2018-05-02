@@ -6,7 +6,7 @@ license "MIT"
 
 x:ddoxFilterArgs "--min-protection=Private"
 
-dependency "packageversion" version="~>0.0.16"
+dependency "packageversion" version="~>0.0.17"
 subConfiguration "packageversion" "library"
 
 preGenerateCommands "packageversion || dub run packageversion"
@@ -25,7 +25,7 @@ configuration "ut" {
   targetPath "out/test"
 
   versions "unitThreadedLight"
-  dependency "unit-threaded" version="~>0.7.38"
+  dependency "unit-threaded" version="~>0.7.45"
 }
 
 configuration "unittest" {
@@ -33,7 +33,7 @@ configuration "unittest" {
   targetName "unittest"
   targetPath "out/test"
 
-  dependency "unit-threaded" version="~>0.7.38"
+  dependency "unit-threaded" version="~>0.7.45"
   preBuildCommands "dub run unit-threaded -c gen_ut_main -- -f out/generated/unit-threaded/testsuite.d"
   mainSourceFile "out/generated/unit-threaded/testsuite.d"
 }
