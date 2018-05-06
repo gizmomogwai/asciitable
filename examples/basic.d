@@ -1,8 +1,3 @@
-/+ dub.sdl:
-name "basic"
-dependency "asciitable" path="../"
-+/
-
 int main(string[] args)
 {
     import std.stdio;

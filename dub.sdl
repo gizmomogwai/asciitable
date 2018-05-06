@@ -6,14 +6,6 @@ license "MIT"
 
 x:ddoxFilterArgs "--min-protection=Private"
 
-dependency "packageversion" version="~>0.0.17"
-subConfiguration "packageversion" "library"
-
-preGenerateCommands "packageversion || dub run packageversion"
-sourceFiles "out/generated/packageversion/asciitable/packageversion.d"
-sourcePaths "source" "out/generated/packageversion"
-importPaths "source" "out/generated/packageversion"
-
 configuration "library" {
   targetType "library"
   targetPath "out/lib"
@@ -36,4 +28,11 @@ configuration "unittest" {
   dependency "unit-threaded" version="~>0.7.45"
   preBuildCommands "dub run unit-threaded -c gen_ut_main -- -f out/generated/unit-threaded/testsuite.d"
   mainSourceFile "out/generated/unit-threaded/testsuite.d"
+}
+
+configuration "basic" {
+  targetType "executable"
+  targetName "basic"
+  targetPath "out/exe"
+  mainSourceFile "examples/basic.d"
 }
