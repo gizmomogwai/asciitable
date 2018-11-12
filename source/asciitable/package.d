@@ -9,6 +9,7 @@
 module asciitable;
 
 import std.string;
+public import asciitable.packageversion;
 
 struct Row
 {
