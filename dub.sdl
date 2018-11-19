@@ -10,6 +10,7 @@ preGenerateCommands "packageversion || dub run packageversion"
 sourcePaths "source" "out/generated/packageversion"
 importPaths "source" "out/generated/packageversion"
 dependency "packageversion" version="~>0.0.15"
+dependency "colored" version="~>0.0.1"
 
 configuration "library" {
   targetType "library"

@@ -2,7 +2,40 @@ int main(string[] args)
 {
     import std.stdio;
     import asciitable;
+    import colored;
+    import std.string;
+    import std.conv;
 
-    AsciiTable(20, 20).add("hello", "world").add("here", "we are").toString("prefix", "|").writeln;
+    import asciitable;
+    import std.stdio;
+
+    // dfmt off
+    new AsciiTable(2)
+        .row.add("hello").add("world")
+        .row.add("here").add("we are")
+        .format
+        .columnSeparator(" | ")
+        .writeln;
+    // dfmt on
+
+    
+    // dfmt off
+    new AsciiTable(2)
+        .row().add("helloworld".red.to!string ~ "\ntest").add("hello %s world".format("beautiful".red))
+        .row().add("hi").add("there 1234567890\ntest")
+        .row().add("table in table").add(
+            new AsciiTable(2)
+                .row().add("1".red.to!string).add("2".green.to!string)
+                .row().add("3".blue.to!string).add("4".yellow.to!string)
+                .format
+                .columnSeparator("|")
+                .rowSeparator("=")
+            .toString)
+        .format
+        .prefix("PREFIX:" )
+        .columnSeparator(" I ")
+        .rowSeparator("-")
+        .writeln;
+    // dfmt on
     return 0;
 }

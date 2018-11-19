@@ -1,8 +1,26 @@
 * Asciitable for dlang
 [[https://github.com/gizmomogwai/asciitable][https://img.shields.io/github/tag/gizmomogwai/asciitable.svg?style=flat-square]] [[https://travis-ci.org/gizmomogwai/asciitable][https://img.shields.io/travis/gizmomogwai/asciitable/master.svg?style=flat-square]] [[https://codecov.io/gh/gizmomogwai/asciitable][https://img.shields.io/codecov/c/github/gizmomogwai/asciitable/master.svg?style=flat-square]] [[https://gizmomogwai.github.io/asciitable][https://img.shields.io/readthedocs/pip.svg?style=flat-square]]
 
+Simple api to create nice looking asciitables.
+
+#+NAME: example
+#+BEGIN_SRC d 
+import asciitable;
+import std.stdio;
+
+new AsciiTable(2)
+    .row.add("hello").add("world")
+    .row.add("here").add("we are")
+    .format
+    .columnSeparator(" | ")
+    .writeln;
+
+->
+
+ | hello | world  | 
+ | here  | we are | 
+
+#+END_SRC
+
 ** Usage
 Please see the [[https://gizmomogwai.github.io/asciitable/asciitable/AsciiTable.html][online docs]] for an example.
-
-** Todos
-*** Implement multiline cells
