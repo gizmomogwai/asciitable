@@ -1,9 +1,7 @@
-﻿%YAML 1.1
+%YAML 1.1
 ---
 language: d
-d:
-- ldc
-- dmd
+d: [dmd]
 sudo: false
 addons:
   apt:
