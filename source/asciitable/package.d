@@ -16,6 +16,7 @@ import std.range;
 import std.conv;
 import colored;
 
+import std.stdio; // TODO
 class Cell
 {
     AsciiTable table;
@@ -39,7 +40,8 @@ class Cell
 
     string render(ulong row)
     {
-        return (row < lines.length ? lines[row] : "").leftJustifyFormattedString(width);
+
+        return colored.leftJustifyFormattedString(row < lines.length ? lines[row] : "", width);
     }
 
     override string toString()
@@ -87,14 +89,11 @@ class Row
         return table.format();
     }
 
-    auto render(ulong row, string columnSeparator)
+    auto render(ulong row, string leftBorder, string columnSeparator, string rightBorder)
     {
-        if (!columnSeparator)
-        {
-            columnSeparator = "";
-        }
-        return columnSeparator ~ cells.map!(cell => cell.render(row))
-            .join(columnSeparator) ~ columnSeparator;
+        auto res = leftBorder ~ cells.map!(cell => cell.render(row))
+            .join(columnSeparator) ~ rightBorder;
+        return res;
     }
 
     auto width(string columnSeparator)
@@ -149,18 +148,135 @@ class AsciiTable
 
 }
 
+class Parts
+{
+    string horizontal;
+    string vertical;
+    string crossing;
+
+    string topLeft;
+    string topRight;
+    string bottomLeft;
+    string bottomRight;
+    string topCrossing;
+    string leftCrossing;
+    string bottomCrossing;
+    string rightCrossing;
+    string headerHorizontal;
+    string headerCrossing;
+    string headerLeftCrossing;
+    string headerRightCrossing;
+    this(string horizontal, string vertical, string crossing, string topLeft, string topRight, string bottomLeft,
+            string bottomRight, string topCrossing, string bottomCrossing,
+            string leftCrossing, string rightCrossing, string headerHorizontal,
+            string headerCrossing, string headerLeftCrossing, string headerRightCrossing)
+    {
+        this.horizontal = horizontal;
+        this.headerHorizontal = headerHorizontal;
+        this.vertical = vertical;
+        this.crossing = crossing;
+        this.headerCrossing = headerCrossing;
+        this.topLeft = topLeft;
+        this.topRight = topRight;
+        this.bottomLeft = bottomLeft;
+        this.bottomRight = bottomRight;
+        this.topCrossing = topCrossing;
+        this.bottomCrossing = bottomCrossing;
+        this.leftCrossing = leftCrossing;
+        this.headerLeftCrossing = headerLeftCrossing;
+        this.rightCrossing = rightCrossing;
+        this.headerRightCrossing = headerRightCrossing;
+    }
+}
+
+class AsciiParts : Parts
+{
+    this()
+    {
+        super("-", "|", "+", "+", "+", "+", "+", "+", "+", "+", "+", "=", "+", "+", "+");
+    }
+}
+
+class UnicodeParts : Parts
+{
+    this()
+    {
+        super("─", "│", "┼", "┌", "┐", "└", "┘", "┬", "┴",
+                "├", "┤", "═", "╪", "╞", "╡");
+    }
+}
 /// the formatter collects format parameters and prints the table
 struct Formatter
 {
     private AsciiTable table;
     private string mPrefix = null;
-    private string mRowSeparator = null;
-    private string mHeaderSeparator = null;
-    private string mColumnSeparator = null;
+    private bool mRowSeparator = false;
+    private bool mHeaderSeparator = false;
+    private bool mColumnSeparator = false;
     private ulong[] mColumnWidths = null;
-    this(AsciiTable newTable)
+    private Parts mParts = null;
+    private bool mTopBorder = false;
+    private bool mLeftBorder = false;
+    private bool mBottomBorder = false;
+    private bool mRightBorder = false;
+    this(AsciiTable newTable, Parts parts = new AsciiParts)
     {
         table = newTable;
+        mParts = parts;
+    }
+
+    auto parts(Parts parts)
+    {
+        mParts = parts;
+        return this;
+    }
+
+    auto borders(bool borders)
+    {
+        topBorder(borders);
+        leftBorder(borders);
+        bottomBorder(borders);
+        rightBorder(borders);
+        return this;
+    }
+
+    /// Switch top and bottom border
+    auto horizontalBorders(bool borders)
+    {
+        topBorder(borders);
+        bottomBorder(borders);
+        return this;
+    }
+    /// Switch left and right border
+    auto verticalBorders(bool borders)
+    {
+        leftBorder(borders);
+        rightBorder(borders);
+        return this;
+    }
+
+    auto topBorder(bool topBorder)
+    {
+        mTopBorder = topBorder;
+        return this;
+    }
+
+    auto leftBorder(bool leftBorder)
+    {
+        mLeftBorder = leftBorder;
+        return this;
+    }
+
+    auto bottomBorder(bool bottomBorder)
+    {
+        mBottomBorder = bottomBorder;
+        return this;
+    }
+
+    auto rightBorder(bool rightBorder)
+    {
+        mRightBorder = rightBorder;
+        return this;
     }
     /// change the prefix that is printed in front of each row
     auto prefix(string newPrefix)
@@ -169,22 +285,29 @@ struct Formatter
         return this;
     }
 
-    /// change the separator between columns, use null for no separator
-    auto columnSeparator(string s)
+    auto separators(bool active)
     {
-        mColumnSeparator = s;
+        columnSeparator(active);
+        rowSeparator(active);
+        headerSeparator(active);
+        return this;
+    }
+    /// change the separator between columns, use null for no separator
+    auto columnSeparator(bool columnSeparator)
+    {
+        mColumnSeparator = columnSeparator;
         return this;
     }
     /// change the separator between rows, use null for no separator
-    auto rowSeparator(string s)
+    auto rowSeparator(bool rowSeparator)
     {
-        mRowSeparator = s;
+        mRowSeparator = rowSeparator;
         return this;
     }
 
-    auto headerSeparator(string s)
+    auto headerSeparator(bool headerSeparator)
     {
-        mHeaderSeparator = s;
+        mHeaderSeparator = headerSeparator;
         return this;
     }
 
@@ -208,11 +331,13 @@ struct Formatter
         return res;
     }
 
-    private auto renderRow(Row row, string[] lines)
+    private auto renderRow(Row row)
     {
+        string[] lines = [];
         for (int i = 0; i < row.height; ++i)
         {
-            lines ~= row.render(i, mColumnSeparator);
+            lines ~= row.render(i, mLeftBorder ? mParts.vertical : "", mColumnSeparator
+                    ? mParts.vertical : "", mRightBorder ? mParts.vertical : "");
         }
         return lines;
     }
@@ -236,38 +361,78 @@ struct Formatter
             }
         }
     }
+
+    string calcHorizontalSeparator(string normal, string left, string middle, string right)
+    {
+        return (mLeftBorder ? left : "") ~ table.rows[0].cells.map!(
+                cell => normal.replicate(cell.width)).join(mColumnSeparator
+                ? middle : normal) ~ (mRightBorder ? right : "");
+    }
     /// Convert to tabular presentation
     string toString()
     {
         updateCellWidths();
-        ulong width = table.rows[0].width(mColumnSeparator);
-
-        auto rSeparator = mRowSeparator ? mRowSeparator.replicate(width) : null;
-        auto hSeparator = mHeaderSeparator ? mHeaderSeparator.replicate(width) : null;
+        auto rSeparator = mRowSeparator ? calcHorizontalSeparator(mParts.horizontal,
+                mParts.leftCrossing, mParts.crossing, mParts.rightCrossing) : null;
+        auto hSeparator = mHeaderSeparator ? calcHorizontalSeparator(mParts.headerHorizontal,
+                mParts.headerLeftCrossing, mParts.headerCrossing, mParts.headerRightCrossing) : null;
         auto prefix = mPrefix ? mPrefix : "";
-        auto lines = rSeparator ? [rSeparator] : [];
-        return table.rows.fold!((memo, row) => toString(memo, table, row,
-                hSeparator, rSeparator))(lines).map!(line => prefix ~ line).join("\n");
+        string[] lines = [];
+        if (mTopBorder)
+        {
+            lines ~= calcHorizontalSeparator(mParts.horizontal, mParts.topLeft,
+                    mParts.topCrossing, mParts.topRight);
+        }
+        foreach (idx, row; table.rows)
+        {
+            auto newLines = toString(table, row, idx == table.rows.length - 1,
+                    hSeparator, rSeparator).map!(line => prefix ~ line);
+            foreach (newLine; newLines)
+            {
+                lines ~= newLine;
+            }
+        }
+        if (mBottomBorder)
+        {
+            lines ~= calcHorizontalSeparator(mParts.horizontal,
+                    mParts.bottomLeft, mParts.bottomCrossing, mParts.bottomRight);
+        }
+        return lines.join("\n");
     }
 
-    private auto toString(string[] lines, AsciiTable table, Row row,
-            string hSeparator, string rSeparator)
+    private auto toString(AsciiTable table, Row row, bool last,
+            string headerSeparator, string rowSeparator)
     {
         if (row.cells.length != table.nrOfColumns)
         {
             throw new Exception("row %s not fully filled".format(row));
         }
-        lines = renderRow(row, lines);
-        if (row.header && hSeparator)
+        auto res = renderRow(row);
+        if (last)
         {
-            lines ~= hSeparator;
+            return res;
         }
-        else if (rSeparator)
+        else
         {
-            lines ~= rSeparator;
+            if (mHeaderSeparator)
+            {
+                if (row.header)
+                {
+                    return res ~ headerSeparator;
+                }
+            }
+            if (mRowSeparator)
+            {
+                return res ~ rowSeparator;
+            }
         }
-        return lines;
+        return res;
     }
+}
+
+@("emtpy table") unittest
+{
+    new AsciiTable(2).format.to!string;
 }
 
 ///
@@ -276,18 +441,52 @@ struct Formatter
     import unit_threaded;
     import std.conv;
 
-    auto table = new AsciiTable(2).row.add("1").add("2").row.add("3").add("4").table;
-    auto f1 = table.format.to!string;
-    f1.shouldEqual("12\n34");
+    // dfmt off
+    auto table = new AsciiTable(2)
+       .header.add("HA").add("HB")
+       .row.add("C").add("D")
+       .row.add("E").add("F")
+       .table;
+  
+    auto f1 = table
+       .format
+       .parts(new UnicodeParts)
+       .borders(true)
+       .separators(true)
+       .to!string;
+    // dfmt on
+    std.stdio.writeln(f1);
+    f1.shouldEqual(`┌──┬──┐
+│HA│HB│
+╞══╪══╡
+│C │D │
+├──┼──┤
+│E │F │
+└──┴──┘`);
 
-    auto f2 = table.format.prefix("  ").rowSeparator("-").to!string;
-    f2.shouldEqual("  --\n  12\n  --\n  34\n  --");
-
-    auto f3 = table.format.prefix("  ").columnSeparator("|").to!string;
-    f3.shouldEqual("  |1|2|\n  |3|4|");
-
-    auto f4 = table.format.prefix("  ").columnSeparator("|").rowSeparator("-").to!string;
-    f4.shouldEqual("  -----\n  |1|2|\n  -----\n  |3|4|\n  -----");
+    // dfmt off
+   auto f2 = table
+       .format
+       .parts(new UnicodeParts)
+       .prefix("  ")
+       .rowSeparator(true)
+       .to!string;
+   // dfmt on
+    f2.shouldEqual(`  HAHB
+  ─────
+  C D 
+  ─────
+  E F `);
+    // dfmt off
+    auto f3 = table
+       .format
+       .parts(new UnicodeParts)
+       .columnSeparator(true)
+       .to!string;
+    // dfmt on
+    f3.shouldEqual(`HA│HB
+C │D 
+E │F `);
 }
 
 ///
@@ -297,7 +496,10 @@ struct Formatter
 
     auto table = new AsciiTable(2).row.add("1\n2").add("3").row.add("4").add("5\n6").table;
     auto f = table.format.prefix("test:").to!string;
-    f.shouldEqual("test:13\ntest:2 \ntest:45\ntest: 6");
+    f.shouldEqual(`test:13
+test:2 
+test:45
+test: 6`);
 }
 
 ///
@@ -306,8 +508,13 @@ struct Formatter
     import unit_threaded;
 
     auto table = new AsciiTable(1).header.add("1").row.add(2).table;
-    auto f1 = table.format.headerSeparator("=").rowSeparator("-").to!string;
-    f1.shouldEqual("-\n1\n=\n2\n-");
+    auto f1 = table.format.headerSeparator(true).rowSeparator(true)
+        .topBorder(true).bottomBorder(true).to!string;
+    f1.shouldEqual(`-
+1
+=
+2
+-`);
 }
 
 @("wrong usage of ascii table") unittest

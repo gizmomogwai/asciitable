@@ -28,3 +28,6 @@ new AsciiTable(2)
 
 ** Usage
 Please see the [[https://gizmomogwai.github.io/asciitable/asciitable/AsciiTable.html][online docs]] for an example.
+
+** TODO
+horizontalPadding for cells
