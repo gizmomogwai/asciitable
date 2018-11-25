@@ -3,6 +3,10 @@
 
 Simple api to create nice looking asciitables.
 
+Shameless plug from the fantastic [[https://github.com/tj/terminal-table][terminal-table]], [[https://github.com/piotrmurach/tty-table][tty-table]] or
+[[https://github.com/phsym/prettytable-rs][prettytable-rs]] 
+(I only found the later two when writing this readme :)). 
+
 #+NAME: example
 #+BEGIN_SRC d 
 import asciitable;
