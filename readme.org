@@ -15,19 +15,21 @@ import std.stdio;
 new AsciiTable(2)
     .row.add("hello").add("world")
     .row.add("here").add("we are")
+    .table
     .format
-    .columnSeparator(" | ")
+    .parts(new UnicodeParts)
+    .columnSeparator(true)
     .writeln;
 
 ->
 
- | hello | world  | 
- | here  | we are | 
+ |hello|world | 
+ |here |we are| 
 
 #+END_SRC
 
 ** Usage
 Please see the [[https://gizmomogwai.github.io/asciitable/asciitable/AsciiTable.html][online docs]] for an example.
 
-** TODO
-horizontalPadding for cells
+** TODOs
+*** TODO horizontalPadding for cells

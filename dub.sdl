@@ -10,8 +10,8 @@ preGenerateCommands "packageversion || dub run packageversion"
 sourceFiles "out/generated/packageversion/asciitable/packageversion.d"
 sourcePaths "source" "out/generated/packageversion"
 importPaths "source" "out/generated/packageversion"
-dependency "packageversion" version="~>0.0.15"
-dependency "colored" version="~>0.0.1"
+dependency "packageversion" version="~>0.0.18"
+dependency "colored" version="~>0.0.19"
 
 configuration "library" {
   targetType "library"
@@ -24,7 +24,7 @@ configuration "ut" {
   targetPath "out/test"
 
   versions "unitThreadedLight"
-  dependency "unit-threaded" version="~>0.7.45"
+  dependency "unit-threaded" version="~>0.8.0"
 }
 
 configuration "unittest" {
@@ -32,7 +32,7 @@ configuration "unittest" {
   targetName "unittest"
   targetPath "out/test"
 
-  dependency "unit-threaded" version="~>0.7.45"
+  dependency "unit-threaded" version="~>0.8.0"
   preBuildCommands "dub run unit-threaded -c gen_ut_main -- -f out/generated/unit-threaded/testsuite.d"
   mainSourceFile "out/generated/unit-threaded/testsuite.d"
 }

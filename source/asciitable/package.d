@@ -40,7 +40,6 @@ class Cell
 
     string render(ulong row)
     {
-
         return colored.leftJustifyFormattedString(row < lines.length ? lines[row] : "", width);
     }
 
