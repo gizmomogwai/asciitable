@@ -1,7 +1,7 @@
 name "asciitable"
 description "A simple asciitable."
-authors "Christian Köstlin"
-copyright "Copyright © 2018, Christian Köstlin"
+authors "Christian Koestlin"
+copyright "Copyright (c) 2018, Christian Koestlin"
 license "MIT"
 
 x:ddoxFilterArgs "--min-protection=Private"
@@ -35,11 +35,4 @@ configuration "unittest" {
   dependency "unit-threaded" version="~>0.8.0"
   preBuildCommands "dub run unit-threaded -c gen_ut_main -- -f out/generated/unit-threaded/testsuite.d"
   mainSourceFile "out/generated/unit-threaded/testsuite.d"
-}
-
-configuration "basic" {
-  targetType "executable"
-  targetName "basic"
-  targetPath "out/exe"
-  mainSourceFile "examples/basic.d"
 }

@@ -1,0 +1,10 @@
+name "asciitable-example-basic"
+description "Basic example for asciitable"
+authors "Christian Koestlin"
+copyright "Copyright (c) 2018, Christian Koestlin"
+license "MIT"
+
+targetName  "asciitable-example-basic"
+targetPath "out/main"
+
+dependency "asciitable" path="../.."
