@@ -1,7 +1,6 @@
-%YAML 1.1
----
 language: d
-d: [dmd]
+d:
+- dmd
 sudo: false
 addons:
   apt:
@@ -10,7 +9,8 @@ addons:
 before_install:
 - pip install --user codecov
 - dub fetch packageversion
-script: dub build --compiler=${DC} && dub test --compiler=${DC} --coverage && dub build --compiler=${DC} --build=ddox
+script: dub build --compiler=${DC} && dub test --compiler=${DC} --coverage && dub
+  build --compiler=${DC} --build=ddox
 after_success: codecov
 deploy:
   provider: pages
@@ -19,8 +19,8 @@ deploy:
   github-token: "$GH_REPO_TOKEN"
   verbose: true
   keep-history: true
-  true:
+  on:
     branch: master
 env:
   global:
-  - secure: g/hjNzuiNsmYG3H53RpZcmZHJLW2p4E49ZXR172sJx+csYTYUsIWnqVTCkPKWTD4kxbN1wcw/LNY1h8yFOTEIBuF6IOSNyh38S3uOzPiJHPMaoNEiQygrfuZaT7cgK3uYngVhRWacH2ZZXKkXGCJ2tU2tOA/K2PRIma6kJmaZnB6UUYF5cnTGyRDwdV13bTjBdP9F/oCsT7lubaHA0MEpu8VCyipAGxhL/blfdhwndPitxOj/LDyZdyoX1+bBtEn2Lfs88sxpLQf1UCXXE+DNm349aFoAhe4lCEg+cHsd95q0NKHZn+ngiXh/G378JgWri9NxkARlUS/YKpESOj6Sq7JjCV0PuBhRPWe1oZNDEAEFmZqTMH/qHrwtOof7dehe4YjWx9VHfvZ5prJXc8G7RJsZjgTkYQUuAMQIhuie8fgzqlsgIGyJC1ena0APFzNuWkEFWO1tJSTB2eqitb7TGOpd5QK33GtiInHsIj2gmg+eaxjeaptMQty2RvlyZnKJqMEkQbimrdS3hHbPQCkCA8qWuV8F+Cbgk92vS3f+wDkMsMlu2DkgdvH+Tlpqctb0Q8FltZd/OPpGcM7Grm3NyDNPaUUIO9WqIS+hLpu19YGQ8XFBNRA4GAjYbz0JJWwe7BZTMp5vSeKjjypAbHpkw6YuzkaceWsHJP2GD32BRY=
+    secure: IBmHPYDOY2A60ag0F12QslnDM1b4/jti7sS6TKT55RWr4HE7TP7W3cO38szf81yFTCf1q/1GWwUkRqYkwV+STwkZ9uZXSdLx/jtN2ygzefBSgJK19k7HwQZbp3rSW4UqvOxM1hUjaBLMjKvDFUx1CYSuicmGau7+JQwVFPrTKWV8hzqKZL8q9ens41StNh2R647/PFmWy59kGJu0Dg5PBf+dEhxFB+ZSTH8oNodNEO5siYRwWEMFj2T8xboxtrU6KF3rK+kb23gDRl/fhnyb0QUb9UwjXqN6EAJ78UR3R9AfPiK84M3cuxAsDHCvvXfZhamz8WvoZUWu72fVYmp+rFdRl6H+THSWnwzIVjomFGeo1e/uXdSCo41ZKB2fbUJy8JCJG351AvlpGLO+4rkgsiYimOKawU2p8KLlU2WC/vLfF7oVqkRopuZA9LU1E6foex/smPbSNL0uEm26dVn2rCQ+x7lA1iaQdLxh+jtbdIqsgHU+cdRcl1xS5nwPKrKVX3wPDeICkQf7YK62MzMMI1asOstQbie4j8iyqoSVF1yurdV4/lvIHTvGbU3nngZBwjHNX2I6X8duZMQScYPAiIazQy82zp6VQKJzNhkUNbLJ9g6D7dTnV3e8tcCoytUzBt79wwrHxPJ1a6QFlwSYMoAT5hBwmlzi5AS/lH5jEhQ=
