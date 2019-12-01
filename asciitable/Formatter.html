@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Struct Formatter</title>
+		<link rel="stylesheet" type="text/css" href="../styles/ddox.css"/>
+		<link rel="stylesheet" href="../prettify/prettify.css" type="text/css"/>
+		<script type="text/javascript" src="../scripts/jquery.js">/**/</script><script type="text/javascript" src="../scripts/ddox.js">/**/</script>
+	</head>
+	<body onload="setupDdox();">
+		<nav id="main-nav">
+			<noscript>
+				<p style="color: red">The search functionality needs JavaScript enabled</p>
+			</noscript>
+			<div id="symbolSearchPane" style="display: none">
+				<form action="#" method="GET">
+					<input id="symbolSearch" type="text" name="q" placeholder="Search for symbols" autocomplete="off" onchange="performSymbolSearch(40);" onkeypress="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
+				</form>
+				<ul id="symbolSearchResults" class="symbolList" style="display: none"></ul><script type="application/javascript" src="../symbols.js"></script><script type="application/javascript">var symbolSearchRootDir = "../";
+$('#symbolSearchPane').show();</script>
+			</div>
+			<ul class="tree-view">
+				<li class="tree-view ">
+					<div class="package selected">
+						<a href="../asciitable.html">asciitable</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../asciitable/packageversion.html">packageversion</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+			</ul>
+		</nav>
+		<div id="main-contents">
+			<h1>Struct Formatter</h1><p>the formatter collects format parameters and prints the table
+</p>
+			<div class="prototype">
+				<code class="lang-d">
+					<div class="single-prototype">
+			<span class="kwd">struct</span> <span class="typ">Formatter</span>
+			<span class="pun">;</span>
+					</div>
+				</code>
+			</div>
+			
+			<section><h2>Constructors</h2>
+				<table>
+					<col class="caption"/>
+					<tr>
+						<th>Name</th><th>Description</th>
+					</tr>
+					<tr>
+						<td>
+							<a href="../asciitable/Formatter.this.html" class="public">
+								<code>this</code>
+							</a>
+						</td>
+						<td></td>
+					</tr>
+				</table>
+			</section>
+			<section><h2>Fields</h2>
+				<table>
+					<col class="caption"/>
+					<tr>
+						<th>Name</th><th>Type</th><th>Description</th>
+					</tr>
+					<tr>
+						<td>
+							<a href="../asciitable/Formatter.mBottomBorder.html" class="private"><code>mBottomBorder</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">bool</span></code></td><td></td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../asciitable/Formatter.mColumnSeparator.html" class="private"><code>mColumnSeparator</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">bool</span></code></td><td></td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../asciitable/Formatter.mColumnWidths.html" class="private"><code>mColumnWidths</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ulong</span><span class="pun">[]</span></code></td><td></td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../asciitable/Formatter.mHeaderSeparator.html" class="private"><code>mHeaderSeparator</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">bool</span></code></td><td></td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../asciitable/Formatter.mLeftBorder.html" class="private"><code>mLeftBorder</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">bool</span></code></td><td></td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../asciitable/Formatter.mParts.html" class="private"><code>mParts</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><a href="../asciitable/Parts.html"><span class="typ">Parts</span></a></code></td><td></td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../asciitable/Formatter.mPrefix.html" class="private"><code>mPrefix</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">string</span></code></td><td></td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../asciitable/Formatter.mRightBorder.html" class="private"><code>mRightBorder</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">bool</span></code></td><td></td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../asciitable/Formatter.mRowSeparator.html" class="private"><code>mRowSeparator</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">bool</span></code></td><td></td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../asciitable/Formatter.mTopBorder.html" class="private"><code>mTopBorder</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">bool</span></code></td><td></td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../asciitable/Formatter.table.html" class="private"><code>table</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><a href="../asciitable/AsciiTable.html"><span class="typ">AsciiTable</span></a></code></td><td></td>
+					</tr>
+				</table>
+			</section>
+			<section><h2>Methods</h2>
+				<table>
+					<col class="caption"/>
+					<tr>
+						<th>Name</th><th>Description</th>
+					</tr>
+					<tr>
+						<td>
+							<a href="../asciitable/Formatter.borders.html" class="public">
+								<code>borders</code>
+							</a>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../asciitable/Formatter.bottomBorder.html" class="public">
+								<code>bottomBorder</code>
+							</a>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../asciitable/Formatter.calcHorizontalSeparator.html" class="public">
+								<code>calcHorizontalSeparator</code>
+							</a>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../asciitable/Formatter.columnSeparator.html" class="public">
+								<code>columnSeparator</code>
+							</a>
+						</td>
+						<td>change the separator between columns, use null for no separator
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../asciitable/Formatter.columnWidths.html" class="public">
+								<code>columnWidths</code>
+							</a>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../asciitable/Formatter.headerSeparator.html" class="public">
+								<code>headerSeparator</code>
+							</a>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../asciitable/Formatter.horizontalBorders.html" class="public">
+								<code>horizontalBorders</code>
+							</a>
+						</td>
+						<td>Switch top and bottom border
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../asciitable/Formatter.leftBorder.html" class="public">
+								<code>leftBorder</code>
+							</a>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../asciitable/Formatter.parts.html" class="public">
+								<code>parts</code>
+							</a>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../asciitable/Formatter.prefix.html" class="public">
+								<code>prefix</code>
+							</a>
+						</td>
+						<td>change the prefix that is printed in front of each row
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../asciitable/Formatter.rightBorder.html" class="public">
+								<code>rightBorder</code>
+							</a>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../asciitable/Formatter.rowSeparator.html" class="public">
+								<code>rowSeparator</code>
+							</a>
+						</td>
+						<td>change the separator between rows, use null for no separator
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../asciitable/Formatter.separators.html" class="public">
+								<code>separators</code>
+							</a>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../asciitable/Formatter.topBorder.html" class="public">
+								<code>topBorder</code>
+							</a>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../asciitable/Formatter.toString.html" class="public">
+								<code>toString</code>
+							</a>
+						</td>
+						<td>Convert to tabular presentation
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../asciitable/Formatter.verticalBorders.html" class="public">
+								<code>verticalBorders</code>
+							</a>
+						</td>
+						<td>Switch left and right border
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../asciitable/Formatter.calcSeparatorRow.html" class="private">
+								<code>calcSeparatorRow</code>
+							</a>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../asciitable/Formatter.renderRow.html" class="private">
+								<code>renderRow</code>
+							</a>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../asciitable/Formatter.toString.html" class="private">
+								<code>toString</code>
+							</a>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../asciitable/Formatter.updateCellWidths.html" class="private">
+								<code>updateCellWidths</code>
+							</a>
+						</td>
+						<td></td>
+					</tr>
+				</table>
+			</section>
+			<section><h2>Example</h2>
+
+<pre class="code"><code class="lang-d"><span class="kwd">import </span><span class="pln">unit_threaded</span><span class="pun">;
+</span><span class="kwd">import </span><span class="pln">std<wbr/></span><span class="pun">.</span><span class="pln">conv</span><span class="pun">;
+
+</span><span class="com">// dfmt off
+</span><span class="kwd">auto <a href="../asciitable/Formatter.table.html"></span><span class="pln">table</span></a><span class="pln"> </span><span class="pun">= </span><span class="kwd">new <a href="../asciitable/AsciiTable.html"></span><span class="typ">AsciiTable</span></a><span class="pun">(</span><span class="lit">2</span><span class="pun">)
+   <wbr/>.</span><span class="pln">header<wbr/></span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="str">"HA"</span><span class="pun">)<wbr/>.</span><span class="pln">add</span><span class="pun">(</span><span class="str">"HB"</span><span class="pun">)
+   <wbr/>.</span><span class="pln">row<wbr/></span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="str">"C"</span><span class="pun">)<wbr/>.</span><span class="pln">add</span><span class="pun">(</span><span class="str">"D"</span><span class="pun">)
+   <wbr/>.</span><span class="pln">row<wbr/></span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="str">"E"</span><span class="pun">)<wbr/>.</span><span class="pln">add</span><span class="pun">(</span><span class="str">"F"</span><span class="pun">)
+   <wbr/>.</span><span class="pln">table</span><span class="pun">;
+
+</span><span class="kwd">auto </span><span class="pln">f1 </span><span class="pun">= </span><span class="pln">table
+   <wbr/></span><span class="pun">.</span><span class="pln">format
+   <wbr/></span><span class="pun">.</span><span class="pln">parts</span><span class="pun">(</span><span class="kwd">new <a href="../asciitable/UnicodeParts.html"></span><span class="typ">UnicodeParts</span></a><span class="pun">)
+   <wbr/>.</span><span class="pln">borders</span><span class="pun">(</span><span class="kwd">true</span><span class="pun">)
+   <wbr/>.</span><span class="pln">separators</span><span class="pun">(</span><span class="kwd">true</span><span class="pun">)
+   <wbr/>.</span><span class="pln">to</span><span class="pun">!</span><span class="typ">string</span><span class="pun">;
+</span><span class="com">// dfmt on
+</span><span class="pln">std<wbr/></span><span class="pun">.</span><span class="pln">stdio<wbr/></span><span class="pun">.</span><span class="pln">writeln</span><span class="pun">(</span><span class="pln">f1</span><span class="pun">);
+</span><span class="pln">f1<wbr/></span><span class="pun">.</span><span class="pln">shouldEqual</span><span class="pun">(</span><span class="str">`┌──┬──┐
+│HA│HB│
+╞══╪══╡
+│C │D │
+├──┼──┤
+│E │F │
+└──┴──┘`</span><span class="pun">);
+
+</span><span class="com">// dfmt off
+</span><span class="kwd">auto </span><span class="pln">f2 </span><span class="pun">= </span><span class="pln">table
+   <wbr/></span><span class="pun">.</span><span class="pln">format
+   <wbr/></span><span class="pun">.</span><span class="pln">parts</span><span class="pun">(</span><span class="kwd">new <a href="../asciitable/UnicodeParts.html"></span><span class="typ">UnicodeParts</span></a><span class="pun">)
+   <wbr/>.</span><span class="pln">prefix</span><span class="pun">(</span><span class="str">"  "</span><span class="pun">)
+   <wbr/>.</span><span class="pln">rowSeparator</span><span class="pun">(</span><span class="kwd">true</span><span class="pun">)
+   <wbr/>.</span><span class="pln">to</span><span class="pun">!</span><span class="typ">string</span><span class="pun">;
+</span><span class="com">// dfmt on
+</span><span class="pln">f2<wbr/></span><span class="pun">.</span><span class="pln">shouldEqual</span><span class="pun">(</span><span class="str">`  HAHB
+─────
+C D 
+─────
+E F `</span><span class="pun">);
+</span><span class="com">// dfmt off
+</span><span class="kwd">auto </span><span class="pln">f3 </span><span class="pun">= </span><span class="pln">table
+   <wbr/></span><span class="pun">.</span><span class="pln">format
+   <wbr/></span><span class="pun">.</span><span class="pln">parts</span><span class="pun">(</span><span class="kwd">new <a href="../asciitable/UnicodeParts.html"></span><span class="typ">UnicodeParts</span></a><span class="pun">)
+   <wbr/>.</span><span class="pln">columnSeparator</span><span class="pun">(</span><span class="kwd">true</span><span class="pun">)
+   <wbr/>.</span><span class="pln">to</span><span class="pun">!</span><span class="typ">string</span><span class="pun">;
+</span><span class="com">// dfmt on
+</span><span class="pln">f3<wbr/></span><span class="pun">.</span><span class="pln">shouldEqual</span><span class="pun">(</span><span class="str">`HA│HB
+C │D 
+E │F `</span><span class="pun">);
+</span></code></pre>
+</section>
+<section><h2>Example</h2>
+
+<pre class="code"><code class="lang-d"><span class="kwd">import </span><span class="pln">unit_threaded</span><span class="pun">;
+
+</span><span class="kwd">auto <a href="../asciitable/Formatter.table.html"></span><span class="pln">table</span></a><span class="pln"> </span><span class="pun">= </span><span class="kwd">new <a href="../asciitable/AsciiTable.html"></span><span class="typ">AsciiTable</span></a><span class="pun">(</span><span class="lit">2</span><span class="pun">)<wbr/>.</span><span class="pln">row<wbr/></span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="str">"1\n2"</span><span class="pun">)<wbr/>.</span><span class="pln">add</span><span class="pun">(</span><span class="str">"3"</span><span class="pun">)<wbr/>.</span><span class="pln">row<wbr/></span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="str">"4"</span><span class="pun">)<wbr/>.</span><span class="pln">add</span><span class="pun">(</span><span class="str">"5\n6"</span><span class="pun">)<wbr/>.</span><span class="pln">table</span><span class="pun">;
+</span><span class="kwd">auto </span><span class="pln">f </span><span class="pun">= </span><span class="pln">table<wbr/></span><span class="pun">.</span><span class="pln">format<wbr/></span><span class="pun">.</span><span class="pln">prefix</span><span class="pun">(</span><span class="str">"test:"</span><span class="pun">)<wbr/>.</span><span class="pln">to</span><span class="pun">!</span><span class="typ">string</span><span class="pun">;
+</span><span class="pln">f<wbr/></span><span class="pun">.</span><span class="pln">shouldEqual</span><span class="pun">(</span><span class="str">`test:13
+test:2 
+test:45
+test: 6`</span><span class="pun">);
+</span></code></pre>
+</section>
+<section><h2>Example</h2>
+
+<pre class="code"><code class="lang-d"><span class="kwd">import </span><span class="pln">unit_threaded</span><span class="pun">;
+
+</span><span class="kwd">auto <a href="../asciitable/Formatter.table.html"></span><span class="pln">table</span></a><span class="pln"> </span><span class="pun">= </span><span class="kwd">new <a href="../asciitable/AsciiTable.html"></span><span class="typ">AsciiTable</span></a><span class="pun">(</span><span class="lit">1</span><span class="pun">)<wbr/>.</span><span class="pln">header<wbr/></span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="str">"1"</span><span class="pun">)<wbr/>.</span><span class="pln">row<wbr/></span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="lit">2</span><span class="pun">)<wbr/>.</span><span class="pln">table</span><span class="pun">;
+</span><span class="kwd">auto </span><span class="pln">f1 </span><span class="pun">= </span><span class="pln">table<wbr/></span><span class="pun">.</span><span class="pln">format<wbr/></span><span class="pun">.</span><span class="pln">headerSeparator</span><span class="pun">(</span><span class="kwd">true</span><span class="pun">)<wbr/>.</span><span class="pln">rowSeparator</span><span class="pun">(</span><span class="kwd">true</span><span class="pun">)
+    <wbr/>.</span><span class="pln">topBorder</span><span class="pun">(</span><span class="kwd">true</span><span class="pun">)<wbr/>.</span><span class="pln">bottomBorder</span><span class="pun">(</span><span class="kwd">true</span><span class="pun">)<wbr/>.</span><span class="pln">to</span><span class="pun">!</span><span class="typ">string</span><span class="pun">;
+</span><span class="pln">f1<wbr/></span><span class="pun">.</span><span class="pln">shouldEqual</span><span class="pun">(</span><span class="str">`-
+1
+=
+2
+-`</span><span class="pun">);
+</span></code></pre>
+</section>
+
+			<footer>
+				<table class="license-info">
+					<tr>
+						<th>Authors</th>
+						<td>
+							<p>Christian Koestlin
+</p>
+
+						</td>
+					</tr>
+					<tr>
+						<th>Copyright</th>
+						<td>
+							<p>Copyright © 2018, Christian Köstlin
+</p>
+
+						</td>
+					</tr>
+					<tr>
+						<th>License</th>
+						<td>
+							<p>MIT
+</p>
+
+						</td>
+					</tr>
+				</table>
+				<p class="faint">Generated using the DDOX documentation generator</p>
+			</footer>
+		</div>
+	</body>
+</html>

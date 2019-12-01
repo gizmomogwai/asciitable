@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Struct AsciiTable</title>
+		<title>Class AsciiTable</title>
 		<link rel="stylesheet" type="text/css" href="../styles/ddox.css"/>
 		<link rel="stylesheet" href="../prettify/prettify.css" type="text/css"/>
 		<script type="text/javascript" src="../scripts/jquery.js">/**/</script><script type="text/javascript" src="../scripts/ddox.js">/**/</script>
@@ -35,12 +35,12 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Struct AsciiTable</h1><p>The workhorse of the module.
+			<h1>Class AsciiTable</h1><p>Build your table and later format it
 </p>
 			<div class="prototype">
 				<code class="lang-d">
 					<div class="single-prototype">
-			<span class="kwd">struct</span> <span class="typ">AsciiTable</span>
+			<span class="kwd">class</span> <span class="typ">AsciiTable</span>
 			<span class="pun">;</span>
 					</div>
 				</code>
@@ -58,7 +58,8 @@ $('#symbolSearchPane').show();</script>
 								<code>this</code>
 							</a>
 						</td>
-						<td></td>
+						<td>create a new asciitable
+</td>
 					</tr>
 				</table>
 			</section>
@@ -70,9 +71,9 @@ $('#symbolSearchPane').show();</script>
 					</tr>
 					<tr>
 						<td>
-							<a href="../asciitable/AsciiTable.minimumWidths.html" class="public"><code>minimumWidths</code></a>
+							<a href="../asciitable/AsciiTable.nrOfColumns.html" class="public"><code>nrOfColumns</code></a>
 						</td>
-						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ulong</span><span class="pun">[]</span></code></td><td></td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ulong</span></code></td><td></td>
 					</tr>
 					<tr>
 						<td>
@@ -90,33 +91,41 @@ $('#symbolSearchPane').show();</script>
 					</tr>
 					<tr>
 						<td>
-							<a href="../asciitable/AsciiTable.add.html" class="public">
-								<code>add</code>
+							<a href="../asciitable/AsciiTable.format.html" class="public">
+								<code>format</code>
 							</a>
 						</td>
-						<td>Add a row of strings
+						<td>create formatter to fine tune tabular presentation
 </td>
 					</tr>
 					<tr>
 						<td>
-							<a href="../asciitable/AsciiTable.toString.html" class="public">
-								<code>toString</code>
+							<a href="../asciitable/AsciiTable.header.html" class="public">
+								<code>header</code>
 							</a>
 						</td>
-						<td>Convert to tabular presentation
+						<td></td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../asciitable/AsciiTable.row.html" class="public">
+								<code>row</code>
+							</a>
+						</td>
+						<td>Open a row
 </td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../asciitable/AsciiTable.add.html" class="private">
+								<code>add</code>
+							</a>
+						</td>
+						<td></td>
 					</tr>
 				</table>
 			</section>
-			<section><h2>Example</h2>
-
-<pre class="code"><code class="lang-d"><span class="kwd">import </span><span class="pln">unit_threaded</span><span class="pun">;
-
-</span><span class="typ">AsciiTable</span><span class="pun">(</span><span class="lit">1</span><span class="pun">, </span><span class="lit">2</span><span class="pun">, </span><span class="lit">3</span><span class="pun">)<wbr/>.</span><span class="pln">add</span><span class="pun">(</span><span class="str">"1"</span><span class="pun">, </span><span class="str">"2"</span><span class="pun">, </span><span class="str">"3"</span><span class="pun">)<wbr/>.</span><span class="pln">add</span><span class="pun">(</span><span class="str">"4"</span><span class="pun">, </span><span class="str">"5"</span><span class="pun">, </span><span class="str">"6"</span><span class="pun">)<wbr/>.</span><span class="pln">toString</span><span class="pun">(</span><span class="str">"prefix"</span><span class="pun">,
-        </span><span class="str">"|"</span><span class="pun">)<wbr/>.</span><span class="pln">shouldEqual</span><span class="pun">(</span><span class="str">"prefix|1|2 |3  |\n" </span><span class="pun">~ </span><span class="str">"prefix|4|5 |6  |"</span><span class="pun">);
-</span></code></pre>
-</section>
-
+			
 			<footer>
 				<table class="license-info">
 					<tr>
