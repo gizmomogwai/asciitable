@@ -115,9 +115,7 @@ class AsciiTable
     Row[] rows;
 
     /++ create a new asciitable
-   + Params:
-   +     minimumWidths = minimum widths of the columns. columns are adjusted so that all entries of a column fit.
-   +/
+     +/
     this(size_t nrOfColumns)
     {
         this.nrOfColumns = nrOfColumns;
