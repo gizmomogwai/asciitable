@@ -8,6 +8,8 @@
 
 module asciitable;
 
+@safe:
+
 public import asciitable.packageversion;
 
 import std.string;
@@ -43,7 +45,7 @@ class Cell
         return colored.leftJustifyFormattedString(row < lines.length ? lines[row] : "", width);
     }
 
-    override string toString()
+    override string toString() @trusted
     {
         return super.toString ~ " { lines: %s }".format(lines);
     }
@@ -64,7 +66,7 @@ class Row
         this.header = header;
     }
 
-    auto add(V)(V v)
+    auto add(V)(V v) @trusted
     {
         if (cells.length == nrOfColumns)
         {
@@ -101,7 +103,7 @@ class Row
                 cell) => memo + cell.width)(0UL) + (cells.length + 1) * columnSeparator.length;
     }
 
-    override string toString()
+    override string toString() @trusted
     {
         return super.toString ~ " { nrOfColumns: %s, cells: %s }".format(nrOfColumns, cells);
     }
@@ -398,11 +400,11 @@ struct Formatter
     }
 
     private auto toString(AsciiTable table, Row row, bool last,
-            string headerSeparator, string rowSeparator)
+            string headerSeparator, string rowSeparator) @trusted
     {
         if (row.cells.length != table.nrOfColumns)
         {
-            throw new Exception("row %s not fully filled".format(row));
+            throw new Exception("row " ~ row.to!string ~ " not fully filled");
         }
         auto res = renderRow(row);
         if (last)
