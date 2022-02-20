@@ -8,6 +8,8 @@
 
 module asciitable;
 
+version(unittest) import unit_threaded;
+
 @safe:
 
 public import asciitable.packageversion;
@@ -437,7 +439,6 @@ struct Formatter
 ///
 @("example") unittest
 {
-    import unit_threaded;
     import std.conv;
 
     // dfmt off
@@ -455,13 +456,13 @@ struct Formatter
        .to!string;
     // dfmt on
     std.stdio.writeln(f1);
-    f1.shouldEqual(`┌──┬──┐
+    f1.should == `┌──┬──┐
 │HA│HB│
 ╞══╪══╡
 │C │D │
 ├──┼──┤
 │E │F │
-└──┴──┘`);
+└──┴──┘`;
 
     // dfmt off
    auto f2 = table
@@ -471,11 +472,11 @@ struct Formatter
        .rowSeparator(true)
        .to!string;
    // dfmt on
-    f2.shouldEqual(`  HAHB
+    f2.should == `  HAHB
   ─────
   C D 
   ─────
-  E F `);
+  E F `;
     // dfmt off
     auto f3 = table
        .format
@@ -483,57 +484,47 @@ struct Formatter
        .columnSeparator(true)
        .to!string;
     // dfmt on
-    f3.shouldEqual(`HA│HB
+    f3.should == `HA│HB
 C │D 
-E │F `);
+E │F `;
 }
 
 ///
 @("multiline cells") unittest
 {
-    import unit_threaded;
-
     auto table = new AsciiTable(2).row.add("1\n2").add("3").row.add("4").add("5\n6").table;
     auto f = table.format.prefix("test:").to!string;
-    f.shouldEqual(`test:13
+    f.should == `test:13
 test:2 
 test:45
-test: 6`);
+test: 6`;
 }
 
 ///
 @("headers") unittest
 {
-    import unit_threaded;
-
     auto table = new AsciiTable(1).header.add("1").row.add(2).table;
     auto f1 = table.format.headerSeparator(true).rowSeparator(true)
         .topBorder(true).bottomBorder(true).to!string;
-    f1.shouldEqual(`-
+    f1.should == `-
 1
 =
 2
--`);
+-`;
 }
 
 @("wrong usage of ascii table") unittest
 {
-    import unit_threaded;
-
     new AsciiTable(2).row.add("1").add("2").add("3").shouldThrow!Exception;
 }
 
 @("auto expand columns") unittest
 {
-    import unit_threaded;
-
     new AsciiTable(1).row.add("test").format.columnWidths([10])
-        .to!string.shouldEqual("test      ");
+        .to!string.should == "test      ";
 }
 
 @("row not fully filled") unittest
 {
-    import unit_threaded;
-
     new AsciiTable(2).row.add("test").format.to!string.shouldThrow!Exception;
 }
