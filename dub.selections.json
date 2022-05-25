@@ -2,7 +2,7 @@
 	"fileVersion": 1,
 	"versions": {
 		"color": "0.0.9",
-		"colored": "0.0.23",
+		"colored": "0.0.24",
 		"packageversion": "0.0.19",
 		"unit-threaded": "2.0.3"
 	}
