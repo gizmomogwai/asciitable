@@ -6,12 +6,7 @@ license "MIT"
 
 x:ddoxFilterArgs "--min-protection=Private"
 
-preGenerateCommands "packageversion || dub run packageversion"
-sourceFiles "out/generated/packageversion/asciitable/packageversion.d"
-sourcePaths "source" "out/generated/packageversion"
-importPaths "source" "out/generated/packageversion"
-dependency "packageversion" version="~>0.0.19"
-dependency "colored" version="~>0.0.22"
+dependency "colored" version="~>0.0.26"
 
 configuration "library" {
   targetType "library"
@@ -24,7 +19,7 @@ configuration "ut" {
   targetPath "out/test"
 
   versions "unitThreadedLight"
-  dependency "unit-threaded" version="~>2.0.3"
+  dependency "unit-threaded" version="~>2.0.4"
 }
 
 configuration "unittest" {
@@ -32,7 +27,7 @@ configuration "unittest" {
   targetName "unittest"
   targetPath "out/test"
 
-  dependency "unit-threaded" version="~>2.0.3"
+  dependency "unit-threaded" version="~>2.0.4"
   preBuildCommands "$DUB run --compiler=$$DC unit-threaded -c gen_ut_main -- -f out/generated/unit-threaded/testsuite.d -d $DUB"
   mainSourceFile "out/generated/unit-threaded/testsuite.d"
 }

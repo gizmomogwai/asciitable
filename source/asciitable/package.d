@@ -12,8 +12,6 @@ version(unittest) import unit_threaded;
 
 @safe:
 
-public import asciitable.packageversion;
-
 import std.string;
 import std.algorithm;
 import std.range;
