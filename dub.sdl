@@ -6,11 +6,12 @@ license "MIT"
 
 x:ddoxFilterArgs "--min-protection=Private"
 
-dependency "colored" version="~>0.0.26"
+dependency "colored" version="~>0.0.27"
 
 configuration "library" {
   targetType "library"
   targetPath "out/lib"
+  excludedSourceFiles "source/testsuite.d"
 }
 
 configuration "ut" {
@@ -28,6 +29,5 @@ configuration "unittest" {
   targetPath "out/test"
 
   dependency "unit-threaded" version="~>2.0.4"
-  preBuildCommands "$DUB run --compiler=$$DC unit-threaded -c gen_ut_main -- -f out/generated/unit-threaded/testsuite.d -d $DUB"
-  mainSourceFile "out/generated/unit-threaded/testsuite.d"
+  mainSourceFile "source/testsuite.d"
 }
