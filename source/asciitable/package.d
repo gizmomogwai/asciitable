@@ -54,29 +54,34 @@ class Cell
 class Row
 {
     AsciiTable table;
-    ulong nrOfColumns;
     bool header;
     Cell[] cells;
     public ulong height = 0;
 
-    this(AsciiTable table, ulong nrOfColumns, bool header)
+    this(AsciiTable table, bool header)
     {
         this.table = table;
-        this.nrOfColumns = nrOfColumns;
         this.header = header;
     }
 
     auto add(V)(V v) @trusted
     {
-        if (cells.length == nrOfColumns)
-        {
-            throw new Exception("too many elements in row nrOfColumns=%s cells=%s".format(nrOfColumns,
-                    cells.length));
-        }
-
         auto cell = new Cell(table, this, v.to!string);
         cells ~= cell;
+        table.addColumns(cells.length);
         this.height = max(height, cell.height);
+        return this;
+    }
+
+    auto add(V)(V[] vs ...) @trusted
+    {
+        table.addColumns(vs.length);
+        foreach (v; vs)
+        {
+            auto cell = new Cell(table, this, v.to!string);
+            cells ~= cell;
+            this.height = max(height, cell.height);
+        }
         return this;
     }
 
@@ -105,7 +110,7 @@ class Row
 
     override string toString() @trusted
     {
-        return super.toString ~ " { nrOfColumns: %s, cells: %s }".format(nrOfColumns, cells);
+        return super.toString ~ " { nrOfColumns: %s, cells: %s }".format(table.nrOfColumns, cells);
     }
 }
 /++
@@ -118,20 +123,35 @@ class AsciiTable
 
     /++ create a new asciitable
      +/
-    this(size_t nrOfColumns)
+    this(size_t nrOfColumns=-1)
     {
         this.nrOfColumns = nrOfColumns;
+    }
+
+    protected auto addColumns(size_t n)
+    {
+        if (nrOfColumns == -1)
+        {
+            nrOfColumns = n;
+        }
+        else
+        {
+            if (n > nrOfColumns)
+            {
+                throw new Exception("This table needs %s columns, but you added %s columns.".format(nrOfColumns, n));
+            }
+        }
     }
 
     /// Open a row
     auto row()
     {
-        return add(new Row(this, nrOfColumns, false));
+        return add(new Row(this, false));
     }
 
     auto header()
     {
-        return add(new Row(this, nrOfColumns, true));
+        return add(new Row(this, true));
     }
 
     private auto add(Row row)
@@ -139,6 +159,7 @@ class AsciiTable
         rows ~= row;
         return row;
     }
+
     /// create formatter to fine tune tabular presentation
     Formatter format()
     {
@@ -440,18 +461,18 @@ struct Formatter
     import std.conv;
 
     // dfmt off
-    auto table = new AsciiTable(2)
-       .header.add("HA").add("HB")
-       .row.add("C").add("D")
-       .row.add("E").add("F")
-       .table;
-  
+    auto table = new AsciiTable()
+        .header.add("HA", "HB")
+        .row.add("C", "D")
+        .row.add("E", "F")
+        .table;
+
     auto f1 = table
-       .format
-       .parts(new UnicodeParts)
-       .borders(true)
-       .separators(true)
-       .to!string;
+        .format
+        .parts(new UnicodeParts)
+        .borders(true)
+        .separators(true)
+        .to!string;
     // dfmt on
     std.stdio.writeln(f1);
     f1.should == `┌──┬──┐
@@ -490,7 +511,7 @@ E │F `;
 ///
 @("multiline cells") unittest
 {
-    auto table = new AsciiTable(2).row.add("1\n2").add("3").row.add("4").add("5\n6").table;
+    auto table = new AsciiTable().row.add("1\n2", "3").row.add("4", "5\n6").table;
     auto f = table.format.prefix("test:").to!string;
     f.should == `test:13
 test:2 
@@ -509,6 +530,16 @@ test: 6`;
 =
 2
 -`;
+}
+
+@("add with several arguments") unittest
+{
+    auto table = new AsciiTable(2);
+    table.header.add("h1", "h2");
+    table.row.add("r1", "r2");
+
+    void wrongAdd() { table.row.add("r1", "r2", "r3");}
+    wrongAdd().shouldThrow;
 }
 
 @("wrong usage of ascii table") unittest
