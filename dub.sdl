@@ -5,8 +5,9 @@ copyright "Copyright (c) 2018, Christian Koestlin"
 license "MIT"
 
 x:ddoxFilterArgs "--min-protection=Private"
+x:ddoxTool "scod"
 
-dependency "colored" version="~>0.0.27"
+dependency "colored" version="~>0.0.28"
 
 configuration "library" {
   targetType "library"
@@ -14,20 +15,12 @@ configuration "library" {
   excludedSourceFiles "source/testsuite.d"
 }
 
-configuration "ut" {
-  targetType "executable"
-  targetName "ut"
-  targetPath "out/test"
-
-  versions "unitThreadedLight"
-  dependency "unit-threaded" version="~>2.0.4"
-}
-
 configuration "unittest" {
   targetType "executable"
   targetName "unittest"
   targetPath "out/test"
 
-  dependency "unit-threaded" version="~>2.0.4"
+  dependency "unit-threaded" version="~>2.1.0"
   mainSourceFile "source/testsuite.d"
+  postRunCommands "$DUB run lst2errormessages || true"
 }

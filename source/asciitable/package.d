@@ -102,12 +102,6 @@ class Row
         return res;
     }
 
-    auto width(string columnSeparator)
-    {
-        return cells.fold!((memo,
-                cell) => memo + cell.width)(0UL) + (cells.length + 1) * columnSeparator.length;
-    }
-
     override string toString() @trusted
     {
         return super.toString ~ " { nrOfColumns: %s, cells: %s }".format(table.nrOfColumns, cells);
@@ -341,16 +335,6 @@ struct Formatter
         return this;
     }
 
-    private string calcSeparatorRow(size_t length, string s)
-    {
-        string res = "";
-        for (size_t i = 0; i < length; ++i)
-        {
-            res ~= s;
-        }
-        return res;
-    }
-
     private auto renderRow(Row row)
     {
         string[] lines = [];
@@ -556,4 +540,16 @@ test: 6`;
 @("row not fully filled") unittest
 {
     new AsciiTable(2).row.add("test").format.to!string.shouldThrow!Exception;
+}
+
+@("switch borders") unittest
+{
+    new AsciiTable(1).row.add("test").format.horizontalBorders(true).to!string.should == "----\ntest\n----";
+    new AsciiTable(1).row.add("test").format.verticalBorders(true).to!string.should == "|test|";
+}
+
+@("wrong usage of column widths") unittest
+{
+    new AsciiTable(1).row.add("test").format.columnWidths([10]).to!string.should == "test      ";
+    new AsciiTable(1).row.add("test").format.columnWidths([10, 0]).shouldThrow;
 }
