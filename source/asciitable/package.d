@@ -8,17 +8,22 @@
 
 module asciitable;
 
-version(unittest) import unit_threaded;
+version(unittest)
+{
+    import unit_threaded;
+}
 
 @safe:
 
-import std.string;
-import std.algorithm;
-import std.range;
-import std.conv;
-import colored;
+import std.string : split, join;
+import std.algorithm : map, max, maxElement;
+import std.range : front;
+import std.conv : to;
+import colored : bold, unformattedLength, leftJustifyFormattedString;
+import std.format : format;
+import std.array : replicate;
+import std.stdio : writeln;
 
-import std.stdio; // TODO
 class Cell
 {
     AsciiTable table;
@@ -42,7 +47,7 @@ class Cell
 
     string render(ulong row)
     {
-        return colored.leftJustifyFormattedString(row < lines.length ? lines[row] : "", width);
+        return leftJustifyFormattedString(row < lines.length ? lines[row] : "", width);
     }
 
     override string toString() @trusted
@@ -458,7 +463,7 @@ struct Formatter
         .separators(true)
         .to!string;
     // dfmt on
-    std.stdio.writeln(f1);
+    writeln(f1);
     f1.should == `┌──┬──┐
 │HA│HB│
 ╞══╪══╡
