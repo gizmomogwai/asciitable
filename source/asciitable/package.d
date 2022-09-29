@@ -49,11 +49,6 @@ class Cell
     {
         return leftJustifyFormattedString(row < lines.length ? lines[row] : "", width);
     }
-
-    override string toString() @trusted
-    {
-        return super.toString ~ " { lines: %s }".format(lines);
-    }
 }
 
 class Row
@@ -106,12 +101,8 @@ class Row
             .join(columnSeparator) ~ rightBorder;
         return res;
     }
-
-    override string toString() @trusted
-    {
-        return super.toString ~ " { nrOfColumns: %s, cells: %s }".format(table.nrOfColumns, cells);
-    }
 }
+
 /++
  + Build your table and later format it
  +/
