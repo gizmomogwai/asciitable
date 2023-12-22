@@ -15,14 +15,14 @@ version(unittest)
 
 @safe:
 
-import std.string : split, join;
+import colored : bold, leftJustifyFormattedString, unformattedLength;
 import std.algorithm : map, max, maxElement;
-import std.range : front;
-import std.conv : to;
-import colored : bold, unformattedLength, leftJustifyFormattedString;
-import std.format : format;
 import std.array : replicate;
+import std.conv : to;
+import std.format : format;
+import std.range : front;
 import std.stdio : writeln;
+import std.string : join, split;
 
 class Cell
 {
@@ -32,8 +32,6 @@ class Cell
     ulong width;
     this(AsciiTable table, Row row, string formatted)
     {
-        import std.array;
-
         this.table = table;
         this.row = row;
         this.lines = formatted.split("\n");
@@ -438,8 +436,6 @@ struct Formatter
 ///
 @("example") unittest
 {
-    import std.conv;
-
     // dfmt off
     auto table = new AsciiTable()
         .header.add("HA", "HB")

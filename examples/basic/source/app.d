@@ -1,13 +1,10 @@
 int main(string[] args)
 {
-    import std.stdio;
-    import asciitable;
-    import colored;
-    import std.string;
-    import std.conv;
-
-    import asciitable;
-    import std.stdio;
+    import asciitable : AsciiTable, UnicodeParts;
+    import colored : blue, green, red, yellow;
+    import std.conv : to;
+    import std.stdio : writeln;
+    import std.string : format;
 
     // dfmt off
     new AsciiTable(2)
@@ -18,8 +15,7 @@ int main(string[] args)
         .leftBorder(true)
         .writeln;
     // dfmt on
-    
-    
+
     // dfmt off
     new AsciiTable(2)
       .row().add("helloworld".red.to!string ~ "\ntest").add("hello %s world".format("beautiful".red))
