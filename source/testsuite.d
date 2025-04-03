@@ -1,4 +1,6 @@
-import unit_threaded;
-mixin runTestsMain!(
-    "asciitable",
-);
+version (unittest)
+{
+    import unit_threaded;
+
+    mixin runTestsMain!("asciitable",);
+}

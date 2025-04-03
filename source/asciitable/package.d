@@ -8,7 +8,7 @@
 
 module asciitable;
 
-version(unittest)
+version (unittest)
 {
     import unit_threaded;
 }
@@ -71,7 +71,7 @@ class Row
         return this;
     }
 
-    auto add(V)(V[] vs ...) @trusted
+    auto add(V)(V[] vs...) @trusted
     {
         table.addColumns(vs.length);
         foreach (v; vs)
@@ -111,7 +111,7 @@ class AsciiTable
 
     /++ create a new asciitable
      +/
-    this(size_t nrOfColumns=-1)
+    this(size_t nrOfColumns = -1)
     {
         this.nrOfColumns = nrOfColumns;
     }
@@ -126,7 +126,8 @@ class AsciiTable
         {
             if (n > nrOfColumns)
             {
-                throw new Exception("This table needs %s columns, but you added %s columns.".format(nrOfColumns, n));
+                throw new Exception("This table needs %s columns, but you added %s columns.".format(nrOfColumns,
+                        n));
             }
         }
     }
@@ -514,7 +515,11 @@ test: 6`;
     table.header.add("h1", "h2");
     table.row.add("r1", "r2");
 
-    void wrongAdd() { table.row.add("r1", "r2", "r3");}
+    void wrongAdd()
+    {
+        table.row.add("r1", "r2", "r3");
+    }
+
     wrongAdd().shouldThrow;
 }
 
@@ -525,18 +530,20 @@ test: 6`;
 
 @("auto expand columns") unittest
 {
-    new AsciiTable(1).row.add("test").format.columnWidths([10])
-        .to!string.should == "test      ";
+    new AsciiTable(1).row.add("test").format.columnWidths([10]).to!string.should == "test      ";
 }
 
 @("row not fully filled") unittest
 {
-    new AsciiTable(2).row.add("test").format.to!string.shouldThrow!Exception;
+    new AsciiTable(2).row.add("test").format
+        .to!string
+        .shouldThrow!Exception;
 }
 
 @("switch borders") unittest
 {
-    new AsciiTable(1).row.add("test").format.horizontalBorders(true).to!string.should == "----\ntest\n----";
+    new AsciiTable(1).row.add("test").format.horizontalBorders(true)
+        .to!string.should == "----\ntest\n----";
     new AsciiTable(1).row.add("test").format.verticalBorders(true).to!string.should == "|test|";
 }
 
